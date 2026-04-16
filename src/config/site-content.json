@@ -55,6 +55,13 @@
 			"value": "ibuki-fuko.gm@gmail.com",
 			"label": "",
 			"order": 1
+		},
+		{
+			"id": "button-1776305864394",
+			"type": "bilibili",
+			"value": "https://b23.tv/yW26wLL",
+			"label": "BiliBili",
+			"order": 3
 		}
 	],
 	"clockShowSeconds": false,
