@@ -8,7 +8,7 @@ export const BLOG_SLUG_KEY = process.env.BLOG_SLUG_KEY || ''
  * GitHub 仓库配置
  */
 export const GITHUB_CONFIG = {
-	OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || 'fuko',
+	OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || 'Fuko-Ibuki-dev',
 	REPO: process.env.NEXT_PUBLIC_GITHUB_REPO || 'Fuko-Blog',
 	BRANCH: process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main',
 	APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID || '3393795',
