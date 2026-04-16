@@ -1,23 +1,25 @@
 {
 	"meta": {
-		"title": "Fuko-Blog",
+		"title": "@Fuko",
 		"description": "Fuko 的个人博客。",
 		"username": "Fuko"
 	},
 	"theme": {
-		"colorBrand": "#2fcbe7",
-		"colorPrimary": "#5B423F",
-		"colorSecondary": "#8b7667",
-		"colorBrandSecondary": "#eec25e",
-		"colorBg": "#d4e8f3",
+		"colorBrand": "#9B89DA",
+		"colorPrimary": "#4E3F42",
+		"colorSecondary": "#7b888e",
+		"colorBrandSecondary": "#FCC841",
+		"colorBg": "#eeeeee",
 		"colorBorder": "#ffffff",
-		"colorCard": "#ffffff99",
+		"colorCard": "#ffffff66",
 		"colorArticle": "#ffffffcc"
 	},
 	"backgroundColors": [
-		"#f7da3987",
-		"#8fdbe9",
-		"#fffef8"
+		"#B81322",
+		"#D99D27",
+		"#E8449D",
+		"#76D81D",
+		"#23C987"
 	],
 	"artImages": [
 		{
