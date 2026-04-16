@@ -5,7 +5,7 @@
 		"username": "Fuko"
 	},
 	"theme": {
-		"colorBrand": "#9B89DA",
+		"colorBrand": "#de4331",
 		"colorPrimary": "#4E3F42",
 		"colorSecondary": "#7b888e",
 		"colorBrandSecondary": "#FCC841",
@@ -15,11 +15,12 @@
 		"colorArticle": "#ffffffcc"
 	},
 	"backgroundColors": [
-		"#B81322",
-		"#D99D27",
-		"#E8449D",
-		"#76D81D",
-		"#23C987"
+		"#f341fc",
+		"#DFEFFC",
+		"#DEDE92",
+		"#DE4331",
+		"#FE9750",
+		"#FCC841"
 	],
 	"artImages": [
 		{
