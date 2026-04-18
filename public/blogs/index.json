@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "slug": "why-i-started-this-blog",
+    "title": "Why I Started This Blog",
+    "tags": [
+      "personal"
+    ],
+    "date": "2026-04-18T16:47",
+    "summary": "This is my first post where I share why I decided to build my own blog and what I hope to create in the future.",
+    "cover": "/blogs/why-i-started-this-blog/b4801b4e183651e3.jpg",
+    "hidden": false,
+    "category": "Random Thoughts"
+  }
+]
