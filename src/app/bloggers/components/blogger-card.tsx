@@ -56,19 +56,19 @@ export function BloggerCard({ blogger, isEditMode = false, onUpdate, onDelete }:
 					{isEditing ? (
 						<>
 							<button onClick={handleCancel} className='rounded-lg px-2 py-1.5 text-xs text-gray-400 transition-colors hover:text-gray-600'>
-								取消
+								Cancel
 							</button>
 							<button onClick={() => setIsEditing(false)} className='rounded-lg px-2 py-1.5 text-xs text-blue-400 transition-colors hover:text-blue-600'>
-								完成
+								Done
 							</button>
 						</>
 					) : (
 						<>
 							<button onClick={() => setIsEditing(true)} className='rounded-lg px-2 py-1.5 text-xs text-blue-400 transition-colors hover:text-blue-600'>
-								编辑
+								Edit
 							</button>
 							<button onClick={onDelete} className='rounded-lg px-2 py-1.5 text-xs text-red-400 transition-colors hover:text-red-600'>
-								删除
+								Delete
 							</button>
 						</>
 					)}
@@ -86,7 +86,7 @@ export function BloggerCard({ blogger, isEditMode = false, onUpdate, onDelete }:
 						/>
 						{canEdit && (
 							<div className='ev pointer-events-none absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-								<span className='text-xs text-white'>更换</span>
+								<span className='text-xs text-white'>Replace</span>
 							</div>
 						)}
 					</div>
@@ -134,7 +134,7 @@ export function BloggerCard({ blogger, isEditMode = false, onUpdate, onDelete }:
 								className={`rounded-full px-3 py-1 text-xs transition-colors ${
 									(localBlogger.status ?? 'recent') === status ? 'bg-brand text-white' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
 								}`}>
-								{status === 'recent' ? '近期更新' : '长期失联'}
+								{status === 'recent' ? 'Recent updates' : 'Long disconnected'}
 							</button>
 						))}
 					</div>

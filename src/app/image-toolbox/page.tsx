@@ -58,13 +58,13 @@ async function fileToWebp(file: File, quality: number, maxWidth?: number) {
 	canvas.width = width
 	canvas.height = height
 	const ctx = canvas.getContext('2d')
-	if (!ctx) throw new Error('无法初始化画布')
+	if (!ctx) throw new Error('Unable to initialize canvas')
 	ctx.drawImage(bitmap, 0, 0, width, height)
 	const blob = await new Promise<Blob>((resolve, reject) => {
 		canvas.toBlob(
 			result => {
 				if (result) resolve(result)
-				else reject(new Error('无法生成 WEBP 文件'))
+				else reject(new Error('Unable to generate a WEBP file'))
 			},
 			'image/webp',
 			quality
@@ -190,7 +190,7 @@ export default function Page() {
 				)
 			} catch (error) {
 				console.error(error)
-				alert('转换过程中出现问题，请稍后再试')
+				alert('Something went wrong during the conversion. Please try again later.')
 				setImages(prev => prev.map((item, idx) => (idx === index ? { ...item, converting: false } : item)))
 			}
 		},
@@ -241,7 +241,7 @@ export default function Page() {
 			}
 		} catch (error) {
 			console.error(error)
-			alert('批量转换过程中出现问题，请稍后再试')
+			alert('Something went wrong during batch conversion. Please try again later.')
 		} finally {
 			setBatchConverting(false)
 		}
@@ -303,8 +303,8 @@ export default function Page() {
 					transition={{ delay: INIT_DELAY }}
 					className='space-y-2 text-center'>
 					<p className='text-secondary text-xs tracking-[0.2em] uppercase'>Image Toolbox</p>
-					<h1 className='text-2xl font-semibold'>PNG / JPG 转 WEBP</h1>
-					<p className='text-secondary'>选择图片 → 调整质量 → 一键转换下载</p>
+					<h1 className='text-2xl font-semibold'>PNG / JPG to WEBP</h1>
+					<p className='text-secondary'>Choose images → adjust quality → convert & download in one click</p>
 				</motion.div>
 
 				<motion.label
@@ -323,15 +323,15 @@ export default function Page() {
 						📷
 					</div>
 					<div>
-						<p className='text-base font-medium'>点击或拖拽图片</p>
-						<p className='text-secondary text-xs'>支持 PNG、JPG、JPEG、HEIC 等常见格式</p>
+						<p className='text-base font-medium'>Click or drag images</p>
+						<p className='text-secondary text-xs'>Supports common formats like PNG, JPG, JPEG, HEIC, and more</p>
 					</div>
 				</motion.label>
 
 				{hasImages && (
 					<motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className='card relative'>
 						<div className='text-secondary flex items-center justify-between border-b border-slate-200 pb-3 text-xs tracking-[0.2em] uppercase'>
-							<span>已选择 {images.length} 张图片</span>
+							<span>Selected {images.length} images</span>
 							<span>{totalSize}</span>
 						</div>
 						<ul className='divide-y divide-slate-200'>
@@ -346,7 +346,7 @@ export default function Page() {
 											<p className='font-medium'>{formatFileName(file.name)}</p>
 											<p className='text-secondary text-xs'>
 												{item.width} × {item.height} · {formatBytes(file.size)}
-												{converted ? `（转换后 ${formatBytes(converted.size)}）` : ''}
+												{converted ? `(Converted: ${formatBytes(converted.size)})` : ''}
 											</p>
 										</div>
 										<div className='flex flex-wrap justify-end gap-2 text-xs'>
@@ -354,26 +354,26 @@ export default function Page() {
 												onClick={() => handleConvertImage(index)}
 												disabled={!!converting}
 												className='rounded-full px-3 py-1 font-medium transition disabled:cursor-not-allowed disabled:text-slate-300'>
-												{converting ? '转换中...' : converted ? '重新转换' : '转换'}
+												{converting ? 'Converting...' : converted ? 'Convert again' : 'Convert'}
 											</button>
 											{converted ? (
 												<>
 													<button
 														onClick={() => handleCompareImage(index)}
 														className='border-brand text-brand hover:bg-brand/10 rounded-full border px-3 py-1 font-semibold transition'>
-														对比
+														Compare
 													</button>
 													<button
 														onClick={() => handleDownloadImage(index)}
 														className='border-brand text-brand hover:bg-brand/10 rounded-full border px-3 py-1 font-semibold transition'>
-														下载
+														Download
 													</button>
 												</>
 											) : null}
 											<button
 												onClick={() => handleRemoveImage(index)}
 												className='rounded-full border border-red-200 px-3 py-1 font-medium text-rose-400 transition hover:bg-rose-50'>
-												移除
+												Remove
 											</button>
 										</div>
 									</li>
@@ -391,7 +391,7 @@ export default function Page() {
 					<div className='flex flex-wrap items-center gap-4'>
 						<div className='flex-1 space-y-4'>
 							<div>
-								<p className='text-secondary text-xs tracking-[0.2em] uppercase'>质量</p>
+										<p className='text-secondary text-xs tracking-[0.2em] uppercase'>Quality</p>
 								<div className='flex items-center gap-3 pt-2'>
 									<input
 										type='range'
@@ -404,7 +404,7 @@ export default function Page() {
 									/>
 									<span className='w-12 text-right text-sm font-medium'>{Math.round(quality * 100)}%</span>
 								</div>
-								<p className='text-xs text-slate-500'>使用 canvas.toDataURL('image/webp', {quality.toFixed(2)})</p>
+										<p className='text-xs text-slate-500'>Using canvas.toDataURL('image/webp', {quality.toFixed(2)})</p>
 							</div>
 							<div className='flex items-center gap-3'>
 								<div className='flex items-center gap-2'>
@@ -416,7 +416,7 @@ export default function Page() {
 										className='h-4 w-4 rounded border-slate-300'
 									/>
 									<label htmlFor='limit-max-width' className='text-secondary cursor-pointer text-xs tracking-[0.2em] uppercase'>
-										限制最大宽度
+										Limit maximum width
 									</label>
 								</div>
 								{limitMaxWidth && (
@@ -440,13 +440,13 @@ export default function Page() {
 								onClick={handleConvertAll}
 								disabled={!hasConvertible || batchConverting}
 								className='rounded-full border border-slate-200 px-4 py-2 font-medium transition disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-300'>
-								{batchConverting ? '全部转换中…' : '全部转换'}
+								{batchConverting ? 'Converting all…' : 'Convert all'}
 							</button>
 							<button
 								onClick={handleDownloadAll}
 								disabled={!hasConverted}
 								className='border-brand text-brand rounded-full border px-4 py-2 font-semibold transition disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-300'>
-								全部下载
+								Download all
 							</button>
 						</div>
 					</div>
@@ -458,7 +458,7 @@ export default function Page() {
 					<div className='grid w-full grid-cols-2 gap-4' onClick={handleCloseCompare}>
 						<div className='flex flex-col items-end p-4'>
 							<div>
-								<div className='text-secondary text-center text-sm font-medium'>原图 ({formatBytes(images[compareIndex].file.size)})</div>
+								<div className='text-secondary text-center text-sm font-medium'>Original ({formatBytes(images[compareIndex].file.size)})</div>
 								<img src={images[compareIndex].preview} alt='Original' className='mt-3 max-h-[90vh] rounded-xl bg-slate-100' />
 							</div>
 						</div>

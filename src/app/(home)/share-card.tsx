@@ -52,7 +52,7 @@ export default function ShareCard() {
 					</>
 				)}
 
-				<h2 className='text-secondary text-sm'>随机推荐</h2>
+				<h2 className='text-secondary text-sm'>Random Recommendations</h2>
 
 				<Link href='/share' className='mt-2 block space-y-2'>
 					<div className='flex items-center'>

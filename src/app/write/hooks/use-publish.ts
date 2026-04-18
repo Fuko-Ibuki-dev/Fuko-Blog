@@ -29,11 +29,11 @@ export function usePublish() {
 				originalSlug
 			})
 
-			const successMsg = mode === 'edit' ? '更新成功' : '发布成功'
+			const successMsg = mode === 'edit' ? 'Update successful' : 'Published successfully'
 			toast.success(successMsg)
 		} catch (err: any) {
 			console.error(err)
-			toast.error(err?.message || '操作失败')
+			toast.error(err?.message || 'Operation failed')
 		} finally {
 			setLoading(false)
 		}
@@ -42,7 +42,7 @@ export function usePublish() {
 	const onDelete = useCallback(async () => {
 		const targetSlug = originalSlug || form.slug
 		if (!targetSlug) {
-			toast.error('缺少 slug，无法删除')
+			toast.error('Missing slug; cannot delete')
 			return
 		}
 		try {
@@ -50,7 +50,7 @@ export function usePublish() {
 			await deleteBlog(targetSlug)
 		} catch (err: any) {
 			console.error(err)
-			toast.error(err?.message || '删除失败')
+			toast.error(err?.message || 'Delete failed')
 		} finally {
 			setLoading(false)
 		}

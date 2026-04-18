@@ -62,18 +62,18 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 
 	const handleSubmit = () => {
 		if (!formData.name.trim() || !formData.image.trim() || !formData.url.trim() || !formData.description.trim()) {
-			toast.error('请填写所有必填项')
+			toast.error('Please fill in all required fields')
 			return
 		}
 
 		if (formData.tags.length === 0) {
-			toast.error('请至少添加一个标签')
+			toast.error('Please add at least one tag')
 			return
 		}
 
 		onSave(formData)
 		onClose()
-		toast.success(project ? '更新成功' : '添加成功')
+		toast.success(project ? 'Updated successfully' : 'Added successfully')
 	}
 
 	return (
@@ -85,7 +85,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 							<>
 								<img src={formData.image} alt={formData.name} className='h-16 w-16 rounded-xl object-cover' />
 								<div className='pointer-events-none absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-									<span className='text-xs text-white'>更换</span>
+									<span className='text-xs text-white'>Replace</span>
 								</div>
 							</>
 						) : (
@@ -99,7 +99,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 							type='text'
 							value={formData.name}
 							onChange={e => setFormData({ ...formData, name: e.target.value })}
-							placeholder='项目名称'
+							placeholder='Project name'
 							className='w-full text-lg font-bold focus:outline-none'
 						/>
 						<div className='mt-1 flex items-center gap-2'>
@@ -107,7 +107,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 								type='number'
 								value={formData.year}
 								onChange={e => setFormData({ ...formData, year: parseInt(e.target.value) || 0 })}
-								placeholder='年份'
+								placeholder='Year'
 								className='text-secondary w-20 rounded border border-gray-300 px-2 py-1 text-xs focus:outline-none'
 							/>
 							<input
@@ -126,7 +126,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 						type='text'
 						value={tagsInput}
 						onChange={e => handleTagsChange(e.target.value)}
-						placeholder='标签，用逗号分隔（如：React, Vue）'
+							placeholder='Tags (comma-separated, e.g., React, Vue)'
 						className='w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:outline-none'
 					/>
 					<div className='mt-2 flex flex-wrap gap-1.5'>
@@ -141,7 +141,7 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 				<textarea
 					value={formData.description}
 					onChange={e => setFormData({ ...formData, description: e.target.value })}
-					placeholder='项目介绍...'
+					placeholder='Project description...'
 					className='mt-3 w-full resize-none text-sm leading-relaxed focus:outline-none'
 					rows={4}
 				/>
@@ -151,14 +151,14 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 						type='url'
 						value={formData.github || ''}
 						onChange={e => setFormData({ ...formData, github: e.target.value || undefined })}
-						placeholder='GitHub URL（可选）'
+							placeholder='GitHub URL (optional)'
 						className='w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:outline-none'
 					/>
 					<input
 						type='url'
 						value={formData.npm || ''}
 						onChange={e => setFormData({ ...formData, npm: e.target.value || undefined })}
-						placeholder='NPM URL（可选）'
+							placeholder='NPM URL (optional)'
 						className='w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:outline-none'
 					/>
 				</div>
@@ -166,10 +166,10 @@ export default function CreateDialog({ project, onClose, onSave }: CreateDialogP
 
 			<div className='mt-6 flex gap-3'>
 				<button onClick={onClose} className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
-					取消
+					Cancel
 				</button>
 				<button onClick={handleSubmit} className='brand-btn flex-1 justify-center px-4'>
-					{project ? '保存' : '添加'}
+					{project ? 'Save' : 'Add'}
 				</button>
 			</div>
 

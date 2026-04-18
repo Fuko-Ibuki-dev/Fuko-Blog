@@ -71,4 +71,4 @@ export default function CalendarCard() {
 	)
 }
 
-const dates = ['一', '二', '三', '四', '五', '六', '日']
+const dates = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

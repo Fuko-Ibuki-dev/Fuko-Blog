@@ -32,7 +32,7 @@ export function WritePreview({ form, coverPreviewUrl, onClose, slug }: WritePrev
 				whileTap={{ scale: 0.95 }}
 				className='absolute top-4 right-6 rounded-xl border bg-white/60 px-6 py-2 text-sm'
 				onClick={onClose}>
-				关闭预览
+				Close Preview
 			</motion.button>
 		</div>
 	)

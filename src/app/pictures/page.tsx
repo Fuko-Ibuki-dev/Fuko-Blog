@@ -38,7 +38,7 @@ export default function Page() {
 		const now = new Date().toISOString()
 
 		if (images.length === 0) {
-			toast.error('请至少选择一张图片')
+			toast.error('Please select at least one image')
 			return
 		}
 
@@ -141,7 +141,7 @@ export default function Page() {
 	}
 
 	const handleDeleteGroup = (picture: Picture) => {
-		if (!confirm('确定要删除这一组图片吗？')) return
+		if (!confirm('Are you sure you want to delete this group of images?')) return
 
 		setPictures(prev => prev.filter(p => p.id !== picture.id))
 		setImageItems(prev => {
@@ -162,7 +162,7 @@ export default function Page() {
 			await handleSave()
 		} catch (error) {
 			console.error('Failed to read private key:', error)
-			toast.error('读取密钥文件失败')
+			toast.error('Failed to read key file')
 		}
 	}
 
@@ -186,10 +186,10 @@ export default function Page() {
 			setOriginalPictures(pictures)
 			setImageItems(new Map())
 			setIsEditMode(false)
-			toast.success('保存成功！')
+			toast.success('Saved successfully!')
 		} catch (error: any) {
 			console.error('Failed to save:', error)
-			toast.error(`保存失败: ${error?.message || '未知错误'}`)
+			toast.error(`Save failed: ${error?.message || 'Unknown error'}`)
 		} finally {
 			setIsSaving(false)
 		}
@@ -201,7 +201,7 @@ export default function Page() {
 		setIsEditMode(false)
 	}
 
-	const buttonText = isAuth ? '保存' : '导入密钥'
+	const buttonText = isAuth ? 'Save' : 'Import Key'
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -235,7 +235,7 @@ export default function Page() {
 
 			{pictures.length === 0 && (
 				<div className='text-secondary flex min-h-screen items-center justify-center text-center text-sm'>
-					还没有上传图片，点击右上角「编辑」后即可开始上传。
+					No images uploaded yet. Click `Edit` in the top-right to start uploading.
 				</div>
 			)}
 
@@ -247,7 +247,7 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={() => router.push('/image-toolbox')}
 							className='rounded-xl border bg-blue-50 px-4 py-2 text-sm text-blue-700'>
-							压缩工具
+							Compression Tool
 						</motion.button>
 						<motion.button
 							whileHover={{ scale: 1.05 }}
@@ -255,17 +255,17 @@ export default function Page() {
 							onClick={handleCancel}
 							disabled={isSaving}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
-							取消
+							Cancel
 						</motion.button>
 						<motion.button
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setIsUploadDialogOpen(true)}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
-							上传
+							Upload
 						</motion.button>
 						<motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSaveClick} disabled={isSaving} className='brand-btn px-6'>
-							{isSaving ? '保存中...' : buttonText}
+							{isSaving ? 'Saving...' : buttonText}
 						</motion.button>
 					</>
 				) : (
@@ -275,7 +275,7 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setIsEditMode(true)}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
-							编辑
+							Edit
 						</motion.button>
 					)
 				)}

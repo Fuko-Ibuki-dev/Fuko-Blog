@@ -72,19 +72,19 @@ export function ProjectCard({ project, isEditMode = false, onUpdate, onDelete }:
 					{isEditing ? (
 						<>
 							<button onClick={handleCancel} className='rounded-lg px-2 py-1.5 text-xs text-gray-400 transition-colors hover:text-gray-600'>
-								取消
+								Cancel
 							</button>
 							<button onClick={() => setIsEditing(false)} className='rounded-lg px-2 py-1.5 text-xs text-blue-400 transition-colors hover:text-blue-600'>
-								完成
+								Done
 							</button>
 						</>
 					) : (
 						<>
 							<button onClick={() => setIsEditing(true)} className='rounded-lg px-2 py-1.5 text-xs text-blue-400 transition-colors hover:text-blue-600'>
-								编辑
+								Edit
 							</button>
 							<button onClick={onDelete} className='rounded-lg px-2 py-1.5 text-xs text-red-400 transition-colors hover:text-red-600'>
-								删除
+								Delete
 							</button>
 						</>
 					)}
@@ -101,7 +101,7 @@ export function ProjectCard({ project, isEditMode = false, onUpdate, onDelete }:
 					/>
 					{canEdit && (
 						<div className='pointer-events-none absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-							<span className='text-xs text-white'>更换</span>
+							<span className='text-xs text-white'>Replace</span>
 						</div>
 					)}
 				</div>
@@ -131,7 +131,7 @@ export function ProjectCard({ project, isEditMode = false, onUpdate, onDelete }:
 								type='text'
 								value={localProject.tags.join(', ')}
 								onChange={e => handleTagsChange(e.target.value)}
-								placeholder='标签，用逗号分隔'
+								placeholder='Tags (comma-separated)'
 								className='bg-secondary/10 border-secondary/20 w-full rounded-lg border px-2 py-1 text-xs focus:outline-none'
 							/>
 						) : (
@@ -160,21 +160,21 @@ export function ProjectCard({ project, isEditMode = false, onUpdate, onDelete }:
 							type='url'
 							value={localProject.url}
 							onChange={e => handleFieldChange('url', e.target.value)}
-							placeholder='网站 URL'
+							placeholder='Website URL'
 							className='bg-secondary/10 border-secondary/20 flex-1 rounded-lg border px-3 py-1.5 text-sm focus:outline-none'
 						/>
 						<input
 							type='url'
 							value={localProject.github || ''}
 							onChange={e => handleFieldChange('github', e.target.value || undefined)}
-							placeholder='GitHub URL（可选）'
+							placeholder='GitHub URL (optional)'
 							className='bg-secondary/10 border-secondary/20 flex-1 rounded-lg border px-3 py-1.5 text-sm focus:outline-none'
 						/>
 						<input
 							type='url'
 							value={localProject.npm || ''}
 							onChange={e => handleFieldChange('npm', e.target.value || undefined)}
-							placeholder='NPM URL（可选）'
+							placeholder='NPM URL (optional)'
 							className='bg-secondary/10 border-secondary/20 flex-1 rounded-lg border px-3 py-1.5 text-sm focus:outline-none'
 						/>
 					</>

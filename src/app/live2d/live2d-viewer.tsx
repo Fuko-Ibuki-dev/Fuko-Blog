@@ -116,7 +116,7 @@ export default function Live2DViewer() {
 	return (
 		<div className='relative aspect-square w-full overflow-hidden rounded-full'>
 			<div ref={containerRef} className='absolute inset-0 h-full w-full' />
-			{status === 'loading' && <div className='text-secondary absolute inset-0 flex items-center justify-center'>加载 Live2D 模型中…</div>}
+			{status === 'loading' && <div className='text-secondary absolute inset-0 flex items-center justify-center'>Loading Live2D model…</div>}
 			{status === 'error' && <div className='absolute inset-0 flex items-center justify-center p-4 text-center text-red-500'>{errorMsg}</div>}
 		</div>
 	)

@@ -17,20 +17,20 @@ export async function pushProjects(params: PushProjectsParams): Promise<void> {
 
 	const token = await getAuthToken()
 
-	toast.info('正在获取分支信息...')
+	toast.info('Fetching branch info...')
 	const refData = await getRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`)
 	const latestCommitSha = refData.sha
 
 	const commitMessage = `更新项目列表`
 
-	toast.info('正在准备文件...')
+	toast.info('Preparing files...')
 
 	const treeItems: TreeItem[] = []
 	const uploadedHashes = new Set<string>()
 	let updatedProjects = [...projects]
 
 	if (imageItems && imageItems.size > 0) {
-		toast.info('正在上传图片...')
+		toast.info('Uploading images...')
 		for (const [url, imageItem] of imageItems.entries()) {
 			if (imageItem.type === 'file') {
 				const hash = imageItem.hash || (await hashFileSHA256(imageItem.file))
@@ -65,15 +65,15 @@ export async function pushProjects(params: PushProjectsParams): Promise<void> {
 		sha: projectsBlob.sha
 	})
 
-	toast.info('正在创建文件树...')
+	toast.info('Creating file tree...')
 	const treeData = await createTree(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, treeItems, latestCommitSha)
 
-	toast.info('正在创建提交...')
+	toast.info('Creating commit...')
 	const commitData = await createCommit(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, commitMessage, treeData.sha, [latestCommitSha])
 
-	toast.info('正在更新分支...')
+	toast.info('Updating branch...')
 	await updateRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`, commitData.sha)
 
-	toast.success('发布成功！')
+	toast.success('Published successfully!')
 }
 

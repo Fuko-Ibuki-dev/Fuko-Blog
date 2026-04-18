@@ -5,20 +5,20 @@ import { createBlob, createCommit, createTree, getRef, listRepoFilesRecursive, t
 import { removeBlogFromIndex } from '@/lib/blog-index'
 
 export async function deleteBlog(slug: string): Promise<void> {
-	if (!slug) throw new Error('需要 slug')
+	if (!slug) throw new Error('Slug is required')
 
 	const token = await getAuthToken()
 
-	toast.info('正在获取分支信息...')
+	toast.info('Fetching branch info...')
 	const refData = await getRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`)
 	const latestCommitSha = refData.sha
 
 	const basePath = `public/blogs/${slug}`
 
-	toast.info('正在收集文章文件...')
+	toast.info('Collecting post files...')
 	const files = await listRepoFilesRecursive(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, basePath, GITHUB_CONFIG.BRANCH)
 	if (files.length === 0) {
-		throw new Error('文章不存在或已删除')
+		throw new Error('Post does not exist or has been deleted')
 	}
 
 	const treeItems: TreeItem[] = files.map(path => ({
@@ -28,7 +28,7 @@ export async function deleteBlog(slug: string): Promise<void> {
 		sha: null
 	}))
 
-	toast.info('正在更新索引...')
+	toast.info('Updating index...')
 	const indexJson = await removeBlogFromIndex(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, slug, GITHUB_CONFIG.BRANCH)
 	const indexBlob = await createBlob(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, toBase64Utf8(indexJson), 'base64')
 	treeItems.push({
@@ -38,12 +38,12 @@ export async function deleteBlog(slug: string): Promise<void> {
 		sha: indexBlob.sha
 	})
 
-	toast.info('正在创建提交...')
+	toast.info('Creating commit...')
 	const treeData = await createTree(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, treeItems, latestCommitSha)
 	const commitData = await createCommit(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `删除文章: ${slug}`, treeData.sha, [latestCommitSha])
 
-	toast.info('正在更新分支...')
+	toast.info('Updating branch...')
 	await updateRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`, commitData.sha)
 
-	toast.success('删除成功！请等待页面部署后刷新')
+	toast.success('Deleted successfully! Please wait for the page to deploy and refresh.')
 }

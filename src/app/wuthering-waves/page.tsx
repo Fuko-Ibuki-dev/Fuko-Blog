@@ -21,16 +21,16 @@ type PitySegment = {
 function parseCardRecords(raw: string): CardRecord[] {
 	const data = JSON.parse(raw) as unknown
 	if (!Array.isArray(data)) {
-		throw new Error('根节点必须是数组')
+		throw new Error('The root node must be an array')
 	}
 	return data.map((item, i) => {
 		if (typeof item !== 'object' || item === null) {
-			throw new Error(`第 ${i + 1} 项不是对象`)
+			throw new Error(`Item ${i + 1} is not an object`)
 		}
 		const r = item as Record<string, unknown>
 		const qualityLevel = Number(r.qualityLevel)
 		if (!Number.isFinite(qualityLevel)) {
-			throw new Error(`第 ${i + 1} 项缺少有效的 qualityLevel`)
+			throw new Error(`Item ${i + 1} is missing a valid qualityLevel`)
 		}
 		return {
 			cardPoolType: String(r.cardPoolType ?? ''),
@@ -85,33 +85,32 @@ export default function Page() {
 			setSegments(buildPitySegments(records))
 		} catch (e) {
 			setSegments([])
-			setError(e instanceof Error ? e.message : '解析失败')
+			setError(e instanceof Error ? e.message : 'Parsing failed')
 		}
 	}, [input])
 
 	return (
 		<div className='mx-auto max-w-3xl space-y-4 px-4 py-24'>
-			<h1 className='text-xl font-semibold tracking-tight'>鸣潮 · 抽卡记录分析</h1>
+			<h1 className='text-xl font-semibold tracking-tight'>Wuthering Waves · Gacha Pull Record Analysis</h1>
 			<p className='text-sm'>
-				<span>使用方法：</span>
+				<span>How to use:</span>
 			</p>
 			<ul className='text-secondary list-inside list-disc text-sm'>
 				<li>
-					进入{' '}
+					Go to{' '}
 					<a href='https://mc.kurogames.com/cloud/#/tools' target='_blank' className='text-brand hover:underline'>
 						https://mc.kurogames.com/cloud/#/tools
 					</a>
-					，登录账号。
+					, then log in.
 				</li>
 				<li>
-					点击 <span className='text-brand'>F12</span>，点击右侧 <span className='text-brand'>Network</span> 面板。左侧选择<span className='text-brand'>换取记录</span>
-					，右侧观察出现最新的 <span className='text-brand'>query</span> 请求。
+					Click <span className='text-brand'>F12</span>, then open the <span className='text-brand'>Network</span> panel on the right. On the left, select <span className='text-brand'>Exchange Records</span>, and watch for the latest <span className='text-brand'>query</span> request on the right.
 				</li>
 				<li>
-					点击 <span className='text-brand'>query</span> 请求，点击 <span className='text-brand'>Preview</span> 面板，右键 <span className='text-brand'>data</span> 值{' '}
-					<span className='text-brand'>Copy Value</span>。
+					Click the <span className='text-brand'>query</span> request, open the <span className='text-brand'>Preview</span> panel, right-click the <span className='text-brand'>data</span> value, then choose{' '}
+					<span className='text-brand'>Copy Value</span>.
 				</li>
-				<li>最后粘贴到下方输入框 - 分析。</li>
+				<li>Paste it into the input box below, then click Analyze.</li>
 			</ul>
 
 			<textarea
@@ -125,7 +124,7 @@ export default function Page() {
 			/>
 
 			<button type='button' onClick={analyze} className='bg-brand rounded-md px-4 py-2 text-sm font-medium text-white hover:opacity-90'>
-				分析
+				Analyze
 			</button>
 
 			{error ? (
@@ -141,7 +140,7 @@ export default function Page() {
 							<div
 								className='bg-brand-secondary flex h-7 shrink-0 items-center overflow-hidden rounded-sm pl-2 text-xs leading-none font-bold text-white tabular-nums'
 								style={{ width: seg.pulls * 4 + 16 }}
-								title={`${seg.pulls} 抽`}>
+								title={`${seg.pulls} pulls`}>
 								{seg.pulls}
 							</div>
 							<span className='text-foreground min-w-0 flex-1 truncate text-sm'>
@@ -150,7 +149,7 @@ export default function Page() {
 										{seg.name} <span className='text-secondary hidden text-xs group-hover:inline'>({seg.time?.slice(0, 10)})</span>
 									</span>
 								) : (
-									<span className='text-secondary'>（未到 5 星）</span>
+									<span className='text-secondary'>(Less than 5-star)</span>
 								)}
 							</span>
 						</li>

@@ -12,7 +12,7 @@ export function SiteMetaForm({ formData, setFormData }: SiteMetaFormProps) {
 		<>
 			<div className='grid grid-cols-2 gap-2'>
 				<div>
-					<label className='mb-2 block text-sm font-medium'>站点标题</label>
+					<label className='mb-2 block text-sm font-medium'>Site title</label>
 					<input
 						type='text'
 						value={formData.meta.title}
@@ -22,7 +22,7 @@ export function SiteMetaForm({ formData, setFormData }: SiteMetaFormProps) {
 				</div>
 
 				<div>
-					<label className='mb-2 block text-sm font-medium'>用户名</label>
+					<label className='mb-2 block text-sm font-medium'>Username</label>
 					<input
 						type='text'
 						value={formData.meta.username || ''}
@@ -33,7 +33,7 @@ export function SiteMetaForm({ formData, setFormData }: SiteMetaFormProps) {
 			</div>
 
 			<div>
-				<label className='mb-2 block text-sm font-medium'>站点描述</label>
+				<label className='mb-2 block text-sm font-medium'>Site description</label>
 				<textarea
 					value={formData.meta.description}
 					onChange={e => setFormData({ ...formData, meta: { ...formData.meta, description: e.target.value } })}

@@ -47,10 +47,10 @@ export default function Page() {
 			await pushSnippets({ snippets })
 			setOriginalSnippets(snippets)
 			setIsEditMode(false)
-			toast.success('保存成功！')
+			toast.success('Saved successfully!')
 		} catch (error: any) {
 			console.error('Failed to save snippets:', error)
-			toast.error(`保存失败: ${error?.message || '未知错误'}`)
+			toast.error(`Save failed: ${error?.message || 'Unknown error'}`)
 		} finally {
 			setIsSaving(false)
 		}
@@ -76,7 +76,7 @@ export default function Page() {
 			await handleSave()
 		} catch (error) {
 			console.error('Failed to read private key:', error)
-			toast.error('读取密钥文件失败')
+			toast.error('Failed to read key file')
 		}
 	}
 
@@ -89,7 +89,7 @@ export default function Page() {
 	const handleAddDraft = () => {
 		const value = newSnippet.trim()
 		if (!value) {
-			toast.error('请输入句子')
+			toast.error('Please enter a sentence')
 			return
 		}
 		setDraftSnippets(prev => [...prev, value])
@@ -103,12 +103,12 @@ export default function Page() {
 	const applyManageChanges = () => {
 		const cleaned = draftSnippets.map(item => item.trim()).filter(Boolean)
 		if (cleaned.length === 0) {
-			toast.error('请至少添加一句话')
+			toast.error('Please add at least one sentence')
 			return
 		}
 		setSnippets(cleaned)
 		setIsManageOpen(false)
-		toast.success('已更新列表')
+		toast.success('List updated')
 	}
 
 	const cancelManageChanges = () => {
@@ -117,7 +117,7 @@ export default function Page() {
 		setNewSnippet('')
 	}
 
-	const buttonText = isAuth ? '保存' : '导入密钥'
+	const buttonText = isAuth ? 'Save' : 'Import Key'
 
 	return (
 		<>
@@ -135,7 +135,7 @@ export default function Page() {
 
 			<div className='flex min-h-[70vh] flex-col items-center justify-center px-6 py-24'>
 				<div className='w-full max-w-3xl text-center'>
-					<p className='text-2xl leading-relaxed font-semibold'>{currentSnippet || '无'}</p>
+					<p className='text-2xl leading-relaxed font-semibold'>{currentSnippet || 'None'}</p>
 				</div>
 			</div>
 
@@ -148,17 +148,17 @@ export default function Page() {
 							onClick={handleCancel}
 							disabled={isSaving}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
-							取消
+							Cancel
 						</motion.button>
 						<motion.button
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={openManageDialog}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
-							管理
+							Manage
 						</motion.button>
 						<motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSaveClick} disabled={isSaving} className='brand-btn px-6'>
-							{isSaving ? '保存中...' : buttonText}
+							{isSaving ? 'Saving...' : buttonText}
 						</motion.button>
 					</>
 				) : (
@@ -168,7 +168,7 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setIsEditMode(true)}
 							className='bg-card rounded-xl border px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
-							编辑
+							Edit
 						</motion.button>
 					)
 				)}
@@ -181,17 +181,17 @@ export default function Page() {
 							type='text'
 							value={newSnippet}
 							onChange={e => setNewSnippet(e.target.value)}
-							placeholder='新增'
+							placeholder='New'
 							className='flex-1 rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm focus:outline-none'
 						/>
 						<button onClick={handleAddDraft} className='brand-btn flex items-center gap-1 px-4 py-2 text-sm'>
 							<Plus className='h-4 w-4' />
-							新增
+							Add
 						</button>
 					</div>
 
 					<div className='max-h-[320px] space-y-2 overflow-y-auto pr-1'>
-						{draftSnippets.length === 0 && <p className='text-secondary py-6 text-center text-sm'>暂无内容</p>}
+						{draftSnippets.length === 0 && <p className='text-secondary py-6 text-center text-sm'>No content yet</p>}
 						{draftSnippets.map((item, index) => (
 							<div key={`${item}-${index}`} className='group flex items-start gap-3 rounded-lg px-3 py-2 text-sm'>
 								<p className='flex-1 leading-relaxed text-gray-800'>{item}</p>
@@ -206,10 +206,10 @@ export default function Page() {
 						<button
 							onClick={cancelManageChanges}
 							className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
-							取消
+							Cancel
 						</button>
 						<button onClick={applyManageChanges} className='brand-btn flex-1 justify-center px-4'>
-							保存
+							Save
 						</button>
 					</div>
 				</div>

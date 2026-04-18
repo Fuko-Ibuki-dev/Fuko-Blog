@@ -34,7 +34,7 @@ export function CoverSection({ delay = 0 }: CoverSectionProps) {
 
 			if (foundItem) {
 				setCover(foundItem)
-				toast.success('已设置封面')
+				toast.success('Cover set')
 
 				return
 			}
@@ -45,7 +45,7 @@ export function CoverSection({ delay = 0 }: CoverSectionProps) {
 		if (files && files.length > 0) {
 			const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'))
 			if (imageFiles.length === 0) {
-				toast.error('请拖入图片文件')
+				toast.error('Please drop an image file')
 				return
 			}
 
@@ -53,7 +53,7 @@ export function CoverSection({ delay = 0 }: CoverSectionProps) {
 			if (resultImages && resultImages.length > 0) {
 				// 使用第一个图片作为封面
 				setCover(resultImages[0])
-				toast.success('已设置封面')
+				toast.success('Cover set')
 			}
 			return
 		}
@@ -71,7 +71,7 @@ export function CoverSection({ delay = 0 }: CoverSectionProps) {
 		if (resultImages && resultImages.length > 0) {
 			// 使用第一个图片作为封面
 			setCover(resultImages[0])
-			toast.success('已设置封面')
+			toast.success('Cover set')
 		}
 
 		// 重置 input 以便可以选择相同的文件
@@ -80,7 +80,7 @@ export function CoverSection({ delay = 0 }: CoverSectionProps) {
 
 	return (
 		<motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay }} className='card relative'>
-			<h2 className='text-sm'>封面</h2>
+			<h2 className='text-sm'>Cover</h2>
 			<input ref={fileInputRef} type='file' accept='image/*' className='hidden' onChange={handleFileChange} />
 			<div
 				className='bg-card mt-3 h-[150px] overflow-hidden rounded-xl border'

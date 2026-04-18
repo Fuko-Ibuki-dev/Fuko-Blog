@@ -23,7 +23,7 @@ export default function ImageUploadDialog({ currentImage, onClose, onSubmit }: I
 		if (!file) return
 
 		if (!file.type.startsWith('image/')) {
-			toast.error('请选择图片文件')
+			toast.error('Please select an image file')
 			return
 		}
 
@@ -47,7 +47,7 @@ export default function ImageUploadDialog({ currentImage, onClose, onSubmit }: I
 				url: urlInput.trim()
 			})
 		} else {
-			toast.error('请上传图片或输入 URL')
+			toast.error('Please upload an image or enter a URL')
 			return
 		}
 
@@ -67,10 +67,10 @@ export default function ImageUploadDialog({ currentImage, onClose, onSubmit }: I
 
 	return (
 		<DialogModal open onClose={handleClose} className='card w-md'>
-			<h2 className='mb-4 text-xl font-bold'>选择图片</h2>
+			<h2 className='mb-4 text-xl font-bold'>Select Image</h2>
 			<form onSubmit={handleSubmit} className='space-y-4'>
 				<div>
-					<label className='text-secondary mb-2 block text-sm font-medium'>上传图片</label>
+					<label className='text-secondary mb-2 block text-sm font-medium'>Upload image</label>
 					<input ref={fileInputRef} type='file' accept='image/*' className='hidden' onChange={handleFileSelect} />
 					<div
 						onClick={() => fileInputRef.current?.click()}
@@ -80,7 +80,7 @@ export default function ImageUploadDialog({ currentImage, onClose, onSubmit }: I
 						) : (
 							<div className='text-center'>
 								<Plus className='text-secondary mx-auto mb-1 h-8 w-8' />
-								<p className='text-secondary text-xs'>点击上传图片</p>
+								<p className='text-secondary text-xs'>Click to upload an image</p>
 							</div>
 						)}
 					</div>
@@ -91,12 +91,12 @@ export default function ImageUploadDialog({ currentImage, onClose, onSubmit }: I
 						<div className='w-full border-t border-gray-300'></div>
 					</div>
 					<div className='relative flex justify-center text-sm'>
-						<span className='text-secondary rounded-lg bg-white px-4 py-1'>或</span>
+						<span className='text-secondary rounded-lg bg-white px-4 py-1'>or</span>
 					</div>
 				</div>
 
 				<div>
-					<label className='text-secondary mb-2 block text-sm font-medium'>图片 URL</label>
+					<label className='text-secondary mb-2 block text-sm font-medium'>Image URL</label>
 					<input
 						type='url'
 						value={urlInput}
@@ -114,13 +114,13 @@ export default function ImageUploadDialog({ currentImage, onClose, onSubmit }: I
 
 				<div className='flex gap-3 pt-2'>
 					<button type='submit' className='brand-btn flex-1 justify-center rounded-lg px-6 py-2.5'>
-						确认
+						Confirm
 					</button>
 					<button
 						type='button'
 						onClick={handleClose}
 						className='flex-1 rounded-lg border border-gray-300 bg-white px-6 py-2.5 transition-colors hover:bg-gray-50'>
-						取消
+						Cancel
 					</button>
 				</div>
 			</form>

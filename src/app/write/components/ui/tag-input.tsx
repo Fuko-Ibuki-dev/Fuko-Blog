@@ -35,7 +35,7 @@ export function TagInput({ tags, onChange }: TagInputProps) {
 			)}
 			<input
 				type='text'
-				placeholder='添加标签（按回车）'
+				placeholder='Add tags (press Enter)'
 				className='w-full bg-transparent text-sm outline-none'
 				value={tagInput}
 				onChange={e => setTagInput(e.target.value)}

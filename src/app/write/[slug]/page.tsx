@@ -20,11 +20,11 @@ export default function EditBlogPage() {
 	const coverPreviewUrl = cover ? (cover.type === 'url' ? cover.url : cover.previewUrl) : null
 
 	if (loading) {
-		return <div className='text-secondary flex h-screen items-center justify-center text-sm'>加载中...</div>
+		return <div className='text-secondary flex h-screen items-center justify-center text-sm'>Loading...</div>
 	}
 
 	if (!slug) {
-		return <div className='flex h-screen items-center justify-center text-sm text-red-500'>无效的博客 ID</div>
+		return <div className='flex h-screen items-center justify-center text-sm text-red-500'>Invalid blog ID</div>
 	}
 
 	return isPreview ? (

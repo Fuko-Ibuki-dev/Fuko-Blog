@@ -164,14 +164,14 @@ export function WriteEditor() {
 			<div className='mb-3 flex gap-3'>
 				<input
 					type='text'
-					placeholder='标题'
+					placeholder='Title'
 					className='bg-card flex-1 rounded-lg border px-3 py-2 text-sm'
 					value={form.title}
 					onChange={e => updateForm({ title: e.target.value })}
 				/>
 				<input
 					type='text'
-					placeholder='slug（xx-xx）'
+					placeholder='slug (xx-xx)'
 					className='bg-card w-[200px] rounded-lg border px-3 py-2 text-sm'
 					value={form.slug}
 					onChange={e => updateForm({ slug: e.target.value })}
@@ -179,7 +179,7 @@ export function WriteEditor() {
 			</div>
 			<textarea
 				ref={textareaRef}
-				placeholder='Markdown 内容'
+				placeholder='Markdown Content'
 				className='bg-card h-[650px] w-full flex-1 resize-none rounded-xl border p-4 text-sm'
 				value={form.md}
 				onChange={e => updateForm({ md: e.target.value })}

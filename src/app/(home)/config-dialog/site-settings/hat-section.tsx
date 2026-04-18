@@ -20,7 +20,7 @@ export function HatSection({ formData, setFormData }: HatSectionProps) {
 
 	return (
 		<div>
-			<label className='mb-2 block text-sm font-medium'>帽子图片</label>
+			<label className='mb-2 block text-sm font-medium'>Hat images</label>
 			<div className='grid grid-cols-6 gap-3 max-sm:grid-cols-4'>
 				{Array.from({ length: hatCount }, (_, i) => i + 1).map(index => {
 					const isActive = currentHatIndex === index
@@ -36,7 +36,7 @@ export function HatSection({ formData, setFormData }: HatSectionProps) {
 								<img src={`/images/hats/${index}.webp`} alt={`hat ${index}`} className='h-20 w-full object-contain' />
 							</button>
 							{isActive && (
-								<span className='bg-brand pointer-events-none absolute top-1 left-1 rounded-full px-2 py-0.5 text-[10px] text-white shadow'>当前使用</span>
+								<span className='bg-brand pointer-events-none absolute top-1 left-1 rounded-full px-2 py-0.5 text-[10px] text-white shadow'>In use</span>
 							)}
 						</div>
 					)
@@ -50,7 +50,7 @@ export function HatSection({ formData, setFormData }: HatSectionProps) {
 						onChange={e => setFormData({ ...formData, hatFlipped: e.target.checked })}
 						className='accent-brand h-4 w-4 rounded'
 					/>
-					<span className='text-sm font-medium'>左右翻转</span>
+					<span className='text-sm font-medium'>Flip left/right</span>
 				</label>
 			</div>
 		</div>

@@ -28,16 +28,16 @@ export type PushBlogParams = {
 export async function pushBlog(params: PushBlogParams): Promise<void> {
 	const { form, cover, images, mode = 'create', originalSlug } = params
 
-	if (!form?.slug) throw new Error('需要 slug')
+	if (!form?.slug) throw new Error('Slug is required')
 
 	if (mode === 'edit' && originalSlug && originalSlug !== form.slug) {
-		throw new Error('编辑模式下不支持修改 slug，请保持原 slug 不变')
+		throw new Error('Slug cannot be changed in edit mode. Please keep the original slug.')
 	}
 
 	// 获取认证 token（自动从全局认证状态获取）
 	const token = await getAuthToken()
 
-	toast.info('正在获取分支信息...')
+	toast.info('Fetching branch info...')
 	const refData = await getRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`)
 	const latestCommitSha = refData.sha
 
@@ -59,7 +59,7 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 		allLocalImages.push({ img: cover, id: cover.id })
 	}
 
-	toast.info('正在准备文件...')
+	toast.info('Preparing files...')
 
 	const uploadedHashes = new Set<string>()
 	let mdToUpload = form.md
@@ -70,7 +70,7 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 
 	// process all images
 	if (allLocalImages.length > 0) {
-		toast.info('正在上传图片...')
+		toast.info('Uploading images...')
 		for (const { img, id } of allLocalImages) {
 			const hash = img.hash || (await hashFileSHA256(img.file))
 			const ext = getFileExt(img.file.name)
@@ -107,7 +107,7 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 		coverPath = cover.url
 	}
 
-	toast.info('正在创建文件...')
+	toast.info('Creating files...')
 
 	// create blob for index.md
 	const mdBlob = await createBlob(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, toBase64Utf8(mdToUpload), 'base64')
@@ -164,16 +164,16 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 	})
 
 	// create tree
-	toast.info('正在创建文件树...')
+	toast.info('Creating file tree...')
 	const treeData = await createTree(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, treeItems, latestCommitSha)
 
 	// create commit
-	toast.info('正在创建提交...')
+	toast.info('Creating commit...')
 	const commitData = await createCommit(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, commitMessage, treeData.sha, [latestCommitSha])
 
 	// update branch reference
-	toast.info('正在更新分支...')
+	toast.info('Updating branch...')
 	await updateRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`, commitData.sha)
 
-	toast.success('发布成功！')
+	toast.success('Published successfully!')
 }

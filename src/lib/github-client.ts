@@ -16,7 +16,7 @@ function handle401Error(): void {
 }
 
 function handle422Error(): void {
-	toast.error('操作太快了，请操作慢一点')
+	toast.error('You’re doing that too quickly. Please slow down a bit.')
 }
 
 export function toBase64Utf8(input: string): string {

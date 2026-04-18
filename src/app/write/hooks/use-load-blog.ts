@@ -9,7 +9,7 @@ export function useLoadBlog(slug?: string) {
 		if (slug) {
 			loadBlogForEdit(slug).catch(err => {
 				console.error('Failed to load blog:', err)
-				toast.error('加载博客失败')
+					toast.error('Failed to load blog')
 			})
 		}
 	}, [slug, loadBlogForEdit])

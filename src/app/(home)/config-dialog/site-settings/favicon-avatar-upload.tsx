@@ -21,7 +21,7 @@ export function FaviconAvatarUpload({ faviconItem, setFaviconItem, avatarItem, s
 		if (!file) return
 
 		if (!file.type.startsWith('image/')) {
-			toast.error('请选择图片文件')
+			toast.error('Please select an image file')
 			return
 		}
 
@@ -36,7 +36,7 @@ export function FaviconAvatarUpload({ faviconItem, setFaviconItem, avatarItem, s
 		if (!file) return
 
 		if (!file.type.startsWith('image/')) {
-			toast.error('请选择图片文件')
+			toast.error('Please select an image file')
 			return
 		}
 
@@ -58,7 +58,7 @@ export function FaviconAvatarUpload({ faviconItem, setFaviconItem, avatarItem, s
 						<img src='/favicon.png' alt='current favicon' className='h-full w-full object-cover' />
 					)}
 					<div className='pointer-events-none absolute inset-0 flex items-center justify-center rounded-lg bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-						<span className='text-xs text-white'>{faviconItem ? '更换' : '上传'}</span>
+						<span className='text-xs text-white'>{faviconItem ? 'Replace' : 'Upload'}</span>
 					</div>
 
 					<div className='absolute inset-0' onClick={() => faviconInputRef.current?.click()} />
@@ -75,7 +75,7 @@ export function FaviconAvatarUpload({ faviconItem, setFaviconItem, avatarItem, s
 						<img src='/images/avatar.png' alt='current avatar' className='h-full w-full object-cover' />
 					)}
 					<div className='pointer-events-none absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-						<span className='text-xs text-white'>{avatarItem ? '更换' : '上传'}</span>
+						<span className='text-xs text-white'>{avatarItem ? 'Replace' : 'Upload'}</span>
 					</div>
 					<div className='absolute inset-0' onClick={() => avatarInputRef.current?.click()} />
 				</div>

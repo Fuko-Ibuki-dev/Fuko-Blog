@@ -51,7 +51,7 @@ export default function Page() {
 	}
 
 	const handleDelete = (project: Project) => {
-		if (confirm(`确定要删除 ${project.name} 吗？`)) {
+		if (confirm(`Are you sure you want to delete ${project.name}?`)) {
 			setProjects(projects.filter(p => p.url !== project.url))
 		}
 	}
@@ -63,7 +63,7 @@ export default function Page() {
 			await handleSave()
 		} catch (error) {
 			console.error('Failed to read private key:', error)
-			toast.error('读取密钥文件失败')
+			toast.error('Failed to read key file')
 		}
 	}
 
@@ -87,10 +87,10 @@ export default function Page() {
 			setOriginalProjects(projects)
 			setImageItems(new Map())
 			setIsEditMode(false)
-			toast.success('保存成功！')
+			toast.success('Saved successfully!')
 		} catch (error: any) {
 			console.error('Failed to save:', error)
-			toast.error(`保存失败: ${error?.message || '未知错误'}`)
+			toast.error(`Save failed: ${error?.message || 'Unknown error'}`)
 		} finally {
 			setIsSaving(false)
 		}
@@ -102,7 +102,7 @@ export default function Page() {
 		setIsEditMode(false)
 	}
 
-	const buttonText = isAuth ? '保存' : '导入密钥'
+	const buttonText = isAuth ? 'Save' : 'Import Key'
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -149,17 +149,17 @@ export default function Page() {
 							onClick={handleCancel}
 							disabled={isSaving}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
-							取消
+							Cancel
 						</motion.button>
 						<motion.button
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
 							onClick={handleAdd}
 							className='rounded-xl border bg-white/60 px-6 py-2 text-sm'>
-							添加
+							Add
 						</motion.button>
 						<motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={handleSaveClick} disabled={isSaving} className='brand-btn px-6'>
-							{isSaving ? '保存中...' : buttonText}
+							{isSaving ? 'Saving...' : buttonText}
 						</motion.button>
 					</>
 				) : (
@@ -169,7 +169,7 @@ export default function Page() {
 							whileTap={{ scale: 0.95 }}
 							onClick={() => setIsEditMode(true)}
 							className='bg-card rounded-xl border px-6 py-2 text-sm backdrop-blur-sm transition-colors hover:bg-white/80'>
-							编辑
+							Edit
 						</motion.button>
 					)
 				)}

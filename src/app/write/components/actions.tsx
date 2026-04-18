@@ -24,7 +24,7 @@ export function WriteActions() {
 	}
 
 	const handleCancel = () => {
-		if (!window.confirm('放弃本次修改吗？')) {
+		if (!window.confirm('Discard these changes?')) {
 			return
 		}
 		if (mode === 'edit' && originalSlug) {
@@ -34,14 +34,14 @@ export function WriteActions() {
 		}
 	}
 
-	const buttonText = isAuth ? (mode === 'edit' ? '更新' : '发布') : '导入密钥'
+	const buttonText = isAuth ? (mode === 'edit' ? 'Update' : 'Publish') : 'Import Key'
 
 	const handleDelete = () => {
 		if (!isAuth) {
-			toast.info('请先导入密钥')
+			toast.info('Please import the key first')
 			return
 		}
-		const confirmMsg = form?.title ? `确定删除《${form.title}》吗？该操作不可恢复。` : '确定删除当前文章吗？该操作不可恢复。'
+		const confirmMsg = form?.title ? `Are you sure you want to delete 「${form.title}」? This action cannot be undone.` : 'Are you sure you want to delete the current post? This action cannot be undone.'
 		if (window.confirm(confirmMsg)) {
 			onDelete()
 		}
@@ -58,9 +58,9 @@ export function WriteActions() {
 		try {
 			const text = await file.text()
 			updateForm({ md: text })
-			toast.success('已导入 Markdown 文件')
+			toast.success('Markdown file imported successfully')
 		} catch (error) {
-			toast.error('导入失败，请重试')
+			toast.error('Import failed. Please try again')
 		} finally {
 			if (e.currentTarget) e.currentTarget.value = ''
 		}
@@ -85,7 +85,7 @@ export function WriteActions() {
 				{mode === 'edit' && (
 					<>
 						<motion.div initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} className='flex items-center gap-2'>
-							<div className='rounded-lg border bg-blue-50 px-4 py-2 text-sm text-blue-700'>编辑模式</div>
+							<div className='rounded-lg border bg-blue-50 px-4 py-2 text-sm text-blue-700'>Edit Mode</div>
 						</motion.div>
 
 						<motion.button
@@ -96,7 +96,7 @@ export function WriteActions() {
 							className='rounded-xl border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600 transition-colors hover:bg-red-100'
 							disabled={loading}
 							onClick={handleDelete}>
-							删除
+							Delete
 						</motion.button>
 
 						<motion.button
@@ -105,7 +105,7 @@ export function WriteActions() {
 							onClick={handleCancel}
 							disabled={saving}
 							className='bg-card rounded-xl border px-4 py-2 text-sm'>
-							取消
+							Cancel
 						</motion.button>
 					</>
 				)}
@@ -118,7 +118,7 @@ export function WriteActions() {
 					className='bg-card rounded-xl border px-4 py-2 text-sm'
 					disabled={loading}
 					onClick={handleImportMd}>
-					导入 MD
+					Import MD
 				</motion.button>
 				<motion.button
 					initial={{ opacity: 0, scale: 0.6 }}
@@ -128,7 +128,7 @@ export function WriteActions() {
 					className='bg-card rounded-xl border px-6 py-2 text-sm'
 					disabled={loading}
 					onClick={openPreview}>
-					预览
+					Preview
 				</motion.button>
 				<motion.button
 					initial={{ opacity: 0, scale: 0.6 }}

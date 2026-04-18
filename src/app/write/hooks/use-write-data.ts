@@ -18,7 +18,7 @@ export function useWriteData() {
 	}, [form.md, images])
 
 	const title = form.title || 'Untitled'
-	const date = dayjs(form.date).format('YYYY年 M月 D日')
+	const date = dayjs(form.date).format('YYYY-M-D')
 
 	return {
 		markdown: processedMarkdown,

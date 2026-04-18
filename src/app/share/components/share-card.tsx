@@ -72,19 +72,19 @@ export function ShareCard({ share, isEditMode = false, onUpdate, onDelete }: Sha
 					{isEditing ? (
 						<>
 							<button onClick={handleCancel} className='rounded-lg px-2 py-1.5 text-xs text-gray-400 transition-colors hover:text-gray-600'>
-								取消
+								Cancel
 							</button>
 							<button onClick={() => setIsEditing(false)} className='rounded-lg px-2 py-1.5 text-xs text-blue-400 transition-colors hover:text-blue-600'>
-								完成
+								Done
 							</button>
 						</>
 					) : (
 						<>
 							<button onClick={() => setIsEditing(true)} className='rounded-lg px-2 py-1.5 text-xs text-blue-400 transition-colors hover:text-blue-600'>
-								编辑
+								Edit
 							</button>
 							<button onClick={onDelete} className='rounded-lg px-2 py-1.5 text-xs text-red-400 transition-colors hover:text-red-600'>
-								删除
+								Delete
 							</button>
 						</>
 					)}
@@ -102,7 +102,7 @@ export function ShareCard({ share, isEditMode = false, onUpdate, onDelete }: Sha
 						/>
 						{canEdit && (
 							<div className='ev pointer-events-none absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-								<span className='text-xs text-white'>更换</span>
+								<span className='text-xs text-white'>Replace</span>
 							</div>
 						)}
 					</div>
@@ -146,7 +146,7 @@ export function ShareCard({ share, isEditMode = false, onUpdate, onDelete }: Sha
 							type='text'
 							value={localShare.tags.join(', ')}
 							onChange={e => handleTagsChange(e.target.value)}
-							placeholder='标签，用逗号分隔'
+							placeholder='Tags (comma-separated)'
 							className='w-full rounded-md border border-gray-300 bg-gray-50 px-2 py-1 text-xs focus:outline-none'
 						/>
 					) : (

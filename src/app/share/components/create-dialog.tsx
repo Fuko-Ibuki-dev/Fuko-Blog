@@ -58,18 +58,18 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 
 	const handleSubmit = () => {
 		if (!formData.name.trim() || !formData.logo.trim() || !formData.url.trim() || !formData.description.trim()) {
-			toast.error('请填写所有必填项')
+			toast.error('Please fill in all required fields')
 			return
 		}
 
 		if (formData.tags.length === 0) {
-			toast.error('请至少添加一个标签')
+			toast.error('Please add at least one tag')
 			return
 		}
 
 		onSave(formData)
 		onClose()
-		toast.success(share ? '更新成功' : '添加成功')
+		toast.success(share ? 'Updated successfully' : 'Added successfully')
 	}
 
 	return (
@@ -82,7 +82,7 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 							<>
 								<img src={formData.logo} alt={formData.name} className='h-16 w-16 rounded-xl object-cover' />
 								<div className='pointer-events-none absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
-									<span className='text-xs text-white'>更换</span>
+									<span className='text-xs text-white'>Replace</span>
 								</div>
 							</>
 						) : (
@@ -96,7 +96,7 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 							type='text'
 							value={formData.name}
 							onChange={e => setFormData({ ...formData, name: e.target.value })}
-							placeholder='资源名称'
+							placeholder='Resource name'
 							className='w-full text-lg font-bold focus:outline-none'
 						/>
 						<input
@@ -126,7 +126,7 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 						type='text'
 						value={tagsInput}
 						onChange={e => handleTagsChange(e.target.value)}
-						placeholder='标签，用逗号分隔（如：图片, 工具）'
+							placeholder='Tags (comma-separated, e.g., images, tools)'
 						className='w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:outline-none'
 					/>
 					<div className='mt-2 flex flex-wrap gap-1.5'>
@@ -141,7 +141,7 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 				<textarea
 					value={formData.description}
 					onChange={e => setFormData({ ...formData, description: e.target.value })}
-					placeholder='资源介绍...'
+					placeholder='Resource description...'
 					className='mt-3 w-full resize-none text-sm leading-relaxed focus:outline-none'
 					rows={4}
 				/>
@@ -150,10 +150,10 @@ export default function CreateDialog({ share, onClose, onSave }: CreateDialogPro
 			{/* 操作按钮 */}
 			<div className='mt-6 flex gap-3'>
 				<button onClick={onClose} className='flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm transition-colors hover:bg-gray-50'>
-					取消
+					Cancel
 				</button>
 				<button onClick={handleSubmit} className='brand-btn flex-1 justify-center px-4'>
-					{share ? '保存' : '添加'}
+					{share ? 'Save' : 'Add'}
 				</button>
 			</div>
 
