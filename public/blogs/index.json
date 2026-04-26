@@ -1,5 +1,17 @@
 [
   {
+    "slug": "optimal-brain-damage-pruning",
+    "title": "# Optimal Brain Damage: How to Tell If a Parameter Is Truly Important",
+    "tags": [
+      "ML"
+    ],
+    "date": "2026-04-26T19:49",
+    "summary": "Reflections on Optimal Brain Damage, focusing on using second-order information (Hessian) to measure parameter importance and guide pruning.",
+    "cover": "/blogs/optimal-brain-damage-pruning/1d7a28eef6e5b346.png",
+    "hidden": false,
+    "category": "Paper Notes"
+  },
+  {
     "slug": "why-i-started-this-blog",
     "title": "Why I Started This Blog",
     "tags": [
